@@ -173,6 +173,26 @@ class CircDirecStepView(ctx : Context) : View(ctx) {
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
         }
+    }
 
+    data class Renderer(var view : CircDirecStepView) {
+        private val animator : Animator = Animator(view)
+        private val cds : CircDirecStep = CircDirecStep(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            cds.draw(canvas, paint)
+            animator.animate {
+                cds.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            cds.startUpdating {
+                animator.start()
+            }
+        }
     }
 }
