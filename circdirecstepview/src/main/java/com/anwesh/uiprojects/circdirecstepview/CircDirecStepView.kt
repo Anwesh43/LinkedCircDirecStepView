@@ -37,7 +37,7 @@ fun Canvas.drawCDSNode(i : Int, scale : Float, paint : Paint) {
     paint.strokeCap = Paint.Cap.ROUND
     paint.color = Color.parseColor("#283593")
     save()
-    translate(w/2 + (w/2 + size) * sc2 * sf, gap * (i + 1))
+    translate(w/2 + (w/2 + 1.5f * size) * sc2 * sf, gap * (i + 1))
     rotate(90f * sc1 * sf)
     drawArc(RectF(-size, -size, size, size), 120f, 300f, true, paint)
     val x : Float = 1.5f * size * Math.cos(Math.PI/3).toFloat()
