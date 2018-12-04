@@ -195,4 +195,12 @@ class CircDirecStepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : CircDirecStepView {
+            val view : CircDirecStepView = CircDirecStepView(activity)
+            activity.setContentView(view)
+            return view 
+        }
+    }
 }
