@@ -23,22 +23,23 @@ fun Int.getInverse() : Float = 1f / this
 
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.getInverse(), Math.max(0f, this - i * n.getInverse())) * n
 
-fun Float.scaleFactor() : Float = Math.floor(this / scDiv).toFloat()
-
 fun Float.updateScale(dir : Float) = dir * scGap
 
 fun Canvas.drawCDSNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
-    val gap : Float = w / (nodes + 1)
+    val gap : Float = h / (nodes + 1)
     val size : Float = gap / sizeFactor
     val sf : Float = 1f - 2 * (i % 2)
     val sc1 : Float = scale.divideScale(0, 2)
     val sc2 : Float = scale.divideScale(1, 2)
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.color = Color.parseColor("#283593")
     save()
-    translate(gap * (i + 1) + (w/2) * sc2 * sf, h/2)
+    translate(w/2 + (w/2) * sc2 * sf, gap * (i + 1))
     rotate(90f * sc1 * sf)
-    drawArc(RectF(-size, -size, size, size), 60f, 300f, true, paint)
+    drawArc(RectF(-size, -size, size, size), 120f, 300f, true, paint)
     val x : Float = 1.5f * size * Math.cos(Math.PI/3).toFloat()
     val y : Float = 1.5f * size * Math.sin(Math.PI/3).toFloat()
     drawLine(0f, 0f, x, y, paint)
