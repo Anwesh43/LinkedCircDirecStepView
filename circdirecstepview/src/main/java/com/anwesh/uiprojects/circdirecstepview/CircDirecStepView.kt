@@ -45,3 +45,21 @@ fun Canvas.drawCDSNode(i : Int, scale : Float, paint : Paint) {
     drawLine(0f, 0f, -x, y, paint)
     restore()
 }
+
+class CircDirecStepView(ctx : Context) : View(ctx) {
+
+    private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
