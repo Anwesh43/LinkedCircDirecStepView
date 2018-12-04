@@ -50,14 +50,16 @@ class CircDirecStepView(ctx : Context) : View(ctx) {
 
     private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas, paint)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
@@ -200,7 +202,7 @@ class CircDirecStepView(ctx : Context) : View(ctx) {
         fun create(activity: Activity) : CircDirecStepView {
             val view : CircDirecStepView = CircDirecStepView(activity)
             activity.setContentView(view)
-            return view 
+            return view
         }
     }
 }
